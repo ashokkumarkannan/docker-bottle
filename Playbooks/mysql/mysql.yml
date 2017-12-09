@@ -1,0 +1,13 @@
+---
+  - hosts: db
+
+    vars:
+      utf8: true
+      mysqld:
+        bind_address: 127.0.0.1
+
+    tasks:
+      - include: tasks/setup.yml
+
+    handlers:
+      - include: handlers/handlers.yml

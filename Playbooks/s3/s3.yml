@@ -1,0 +1,35 @@
+---
+- hosts: '{{ target }}'
+  tasks:
+    - name: Create an empty bucket
+      aws_s3:
+        aws_access_key:
+        aws_secret_key:
+        bucket: '{{ bucketname }}'
+        mode: create
+        permission: public-read
+
+    - name: Upload a file
+      aws_s3:
+        aws_access_key:
+        aws_secret_key:
+        bucket: '{{ bucketname }}'
+        object: /my/first/file/hello.txt
+        src: /root/s3/files/hello.txt
+        mode: put
+
+    - name: List the files
+      aws_s3:
+        aws_access_key:
+        aws_secret_key:
+        bucket: '{{ bucketname }}'
+        mode: list
+
+    - name: Download the object
+      aws_s3:
+        aws_access_key:
+        aws_secret_key:
+        bucket: '{{ bucketname }}'
+        object: /my/first/file/hello.txt
+        dest: /tmp/hello.txt
+        mode: get

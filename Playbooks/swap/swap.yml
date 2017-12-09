@@ -1,0 +1,11 @@
+---
+  - hosts: all
+
+    vars:
+      swappiness: 60
+
+    tasks:
+      - import_tasks: tasks/setup-swappiness.yml
+
+    handlers:
+      - import_tasks: handlers/handlers.yml

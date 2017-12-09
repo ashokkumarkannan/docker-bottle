@@ -1,0 +1,39 @@
+ansible-playbook <main-playbook.yml>
+
+# Setting up pip #
+apt-get install python-pip
+
+# The command to install docker-py module #
+
+pip install docker-py
+
+# Let us do that with ansible #
+
+ansible all -i 'ansible-instance,' -m pip -a "name=docker-py state=present
+
+# If you want docker-compose # Try it yourself
+pip install docker-compose
+
+
+# Let us invoke the docker playbook only on master #
+ansible-playbook docker.yml --extra-vars "target=ansible-instance"
+
+References:
+http://docs.ansible.com/ansible/latest/docker_container_module.html#docker-container
+http://docs.ansible.com/ansible/latest/docker_image_module.html#docker-image
+
+# Let us do something on Amazon S3 #
+
+Dependencies:
+
+pip install boto3
+
+# Create AWS Access Key and AWS Secret Key in AWS IAM Console #
+
+# Copy the Access Key and Secret Key and Keep them safe #
+
+# Update them in s3.yml #
+ansible-playbook s3.yml --extra-vars "target=ansible-instance bucketname=sijofranklin-bucket"
+
+List of All Modules:
+http://docs.ansible.com/ansible/latest/modules_by_category.html
